@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="../style.css">
 </head>
 
-<body onload="populateNavbar(); populateToolList(); generateList();">
+<body onload="populateNavbar(); populateToolList(); generateList('');">
 
     <div id="sidenav"></div>
 
@@ -15,36 +15,49 @@
 
         <input id="search-bar" placeholder="search for tools..."></input>
 
-        <div id="tools">
-            <p>LOADING...</p>
+        <div id="all-tools" style="display: inline;">
+            <div id="tools">
+                <p>LOADING...</p>
+            </div>
+            <h2>COMING SOON</h2>
+            <h3>CONVERSIONS</h3>
+            <ul>
+                <li><a>TIME</a></li>
+                <li><a>AREA</a></li>
+                <li><a>STORAGE</a></li>
+                <li><a>VOLUME</a></li>
+                <li><a>CURRENCY</a></li>
+            </ul>
+            <h3>TIMERS</h3>
+            <ul>
+                <li><a>STOPWATCH</a></li>
+                <li><a>COUNTDOWN</a></li>
+                <li><a>POMODORO</a></li>
+            </ul>
+            <h3>GENERATORS</h3>
+            <ul>
+                <li><a>RANDOM NUMBER</a></li>
+                <li><a>PASSWORD</a></li>
+                <li><a>QR CODE</a></li>
+            </ul>
         </div>
-        <h2>COMING SOON</h2>
-        <h3>CONVERSIONS</h3>
-        <ul>
-            <li><a>TIME</a></li>
-            <li><a>AREA</a></li>
-            <li><a>STORAGE</a></li>
-            <li><a>VOLUME</a></li>
-            <li><a>CURRENCY</a></li>
-        </ul>
-        <h3>TIMERS</h3>
-        <ul>
-            <li><a>STOPWATCH</a></li>
-            <li><a>COUNTDOWN</a></li>
-            <li><a>POMODORO</a></li>
-        </ul>
-        <h3>GENERATORS</h3>
-        <ul>
-            <li><a>RANDOM NUMBER</a></li>
-            <li><a>PASSWORD</a></li>
-            <li><a>QR CODE</a></li>
-        </ul>
+
+        <div id="search-results" style="display: none;">
+            <h3>SEARCH RESULTS</h3>
+            <ul id="results-list">
+                <p>LOADING...</p>
+            </ul>
+        </div>
     </div>
 
     <script src="../pageNav.js"></script>
     <script src="tools.js"></script>
     <script src="toolsList.js"></script>
 
+    <script>
+        document.getElementById("search-bar")
+            .addEventListener("input", (event) => generateList(document.getElementById("search-bar").value));
+    </script>
 </body>
 
 </html>
