@@ -1,0 +1,356 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+
+body {
+    font-family: 'Space Mono', monospace;
+
+    --text: #fafafa;
+    --background: #050505;
+    --background-darker: #292929;
+    --primary: #23CE6B;
+    --secondary: #062d24;
+    --accent: #85ff66;
+
+    --warning: #ff3535;
+    --warning-background: #3f0c0c;
+
+    color: var(--text);
+    background-color: var(--background);
+}
+
+/* SIDENAV */
+
+#sidenav {
+    height: 100%;
+    width: 160px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: var(--background);
+    border-right: 2px solid var(--secondary);
+    overflow-x: hidden;
+    padding-top: 8px;
+}
+
+#sidenav a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 20px;
+    color: var(--text);
+    display: block;
+    transition: 0.2s;
+}
+
+#sidenav a:hover {
+    color: var(--accent);
+    transition: 0.2s;
+}
+
+.main {
+    margin-left: 192px;
+    /* Same as the width of the sidenav + 32px */
+    font-size: 28px;
+    /* Increased text to enable scrolling */
+    padding: 0px 10px;
+}
+
+@media screen and (max-height: 450px) {
+    #sidenav {
+        padding-top: 15px;
+    }
+
+    #sidenav a {
+        font-size: 18px;
+    }
+}
+
+/* HEADER */
+
+#utils-header {
+    color: var(--primary);
+}
+
+#top h1 {
+    margin: 0px;
+}
+
+#top button {
+    width: 40px;
+    height: 40px;
+    border: none;
+
+    text-align: center;
+    line-height: 40px;
+}
+
+#top .saved {
+    color: var(--primary)
+}
+
+#top .not-saved {
+    color: var(--text)
+}
+
+#top {
+    margin: 32px 0px;
+}
+
+#version {
+    font-size: 16px;
+    margin: 0px;
+
+    color: #535353;
+}
+
+#home-header {
+    margin-bottom: 0px;
+}
+
+/* TOOL PREVIEW */
+
+.tool-preview {
+    border-radius: 16px;
+
+    background-color: var(--secondary);
+
+    margin: 32px;
+    padding: 0px 16px;
+}
+
+.tool-preview p {
+    font-size: 20px;
+}
+
+.tool-type {
+    border-radius: 4px;
+
+    background-color: var(--background);
+
+    padding: 1px 5px;
+
+    font-size: 16px;
+
+    color: var(--text);
+}
+
+a {
+    color: var(--text);
+
+    text-decoration: none;
+
+    transition: 0.2s;
+}
+
+a:hover {
+    color: var(--accent);
+
+    transition: 0.2s;
+}
+
+/* CONVERSIONS */
+
+input,
+select,
+button {
+    border: 1px solid var(--primary);
+    border-radius: 4px;
+
+    background-color: var(--secondary);
+
+    color: var(--text);
+
+    font-family: 'Space Mono', monospace;
+    font-size: 24px;
+}
+
+#swap {
+    width: 37px;
+    height: 37px;
+
+    text-align: center;
+    line-height: 37px;
+}
+
+/* LISTS */
+
+ul {
+    list-style: none;
+}
+
+/* SETTINGS */
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip .tooltiptext {
+    opacity: 0;
+    width: 310px;
+    color: var(--text);
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    font-size: 16px;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    bottom: 100%;
+    left: 50%;
+    margin-left: calc(310px / -2);
+
+    transition: opacity 0.1s;
+}
+
+.tooltip:hover .tooltiptext {
+    opacity: 1;
+}
+
+.regular {
+    border: 1px solid var(--primary);
+    background-color: var(--secondary);
+}
+
+.danger {
+    border: 1px solid var(--warning);
+    background-color: var(--warning-background);
+}
+
+.settingsText:hover {
+    cursor: pointer;
+}
+
+/* MODAL */
+
+.modal {
+    background-color: var(--background-darker);
+    border-radius: 12px;
+    width: 50%;
+    height: 60%;
+    position: relative;
+    border: none;
+    color: white;
+
+    max-width: 992px;
+    min-height: 408px;
+
+    max-height: 606px;
+    min-height: 375px;
+}
+
+.modal::backdrop {
+    filter: blur(99999px);
+}
+
+.modalButton {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+
+    background-color: transparent;
+    border: none;
+}
+
+.modalButton:hover {
+    cursor: pointer;
+}
+
+.modalButton:focus {
+    border: none;
+}
+
+.modalMain {
+    position: absolute;
+    bottom: 0;
+    height: calc(100% - 90px);
+    width: calc(100% - 100px);
+}
+
+/* CHECKBOX */
+
+.toggle {
+    --width: 80px;
+    --height: calc(var(--width) / 3);
+
+    position: relative;
+    display: inline-block;
+    width: var(--width);
+    height: var(--height);
+
+    border-radius: var(--height);
+    cursor: pointer;
+
+    border: 1px solid var(--primary);
+}
+
+.toggle input {
+    display: none;
+}
+
+.toggle .slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: var(--height);
+    background-color: var(--secondary);
+    transition: all 0.2s ease-in-out;
+}
+
+.toggle .slider::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    transform: translate(-1px, -1px);
+
+    width: calc(var(--height));
+    height: calc(var(--height));
+    border-radius: calc(var(--height) / 2);
+    background-color: var(--secondary);
+
+    border: 1px solid var(--primary);
+
+    transition: all 0.4s ease-in-out;
+}
+
+.toggle input:checked+.slider {
+    background-color: var(--primary);
+}
+
+.toggle input:checked+.slider::before {
+    transform: translate(calc(var(--width) - var(--height) - 1px), -1px);
+}
+
+.text {
+    position: relative;
+    left: calc(var(--width) + 5px);
+    top: -7px;
+}
+
+/* SEARCH */
+
+#search-bar {
+    border-radius: 9999px;
+
+    padding: 4px 12px;
+}
+
+#search-bar::-webkit-input-placeholder {
+    font-style: italic;
+}
+
+#search-bar:-moz-placeholder {
+    font-style: italic;
+}
+
+#search-bar::-moz-placeholder {
+    font-style: italic;
+}
+
+#search-bar:-ms-input-placeholder {
+    font-style: italic;
+}

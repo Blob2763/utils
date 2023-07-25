@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../style.css">
+
+    <script src="../pageNav.js"></script>
+    <script src="../tools/save.js" defer></script>
+    <script src="settings.js" defer></script>
+</head>
+
+<body onload="populateNavbar()">
+
+    <div id="sidenav"></div>
+
+    <div class="main">
+        <h1><span id="utils-header">SETTINGS</span></h1>
+        <h3>GENERAL</h3>
+        <ul>
+            <div class="tooltip" id="colorSchemeText">
+                <li class="settingsText">COLOUR SCHEMES</li>
+            </div>
+        </ul>
+
+        <h3>CONVERSIONS</h3>
+        <ul>
+            <div class="tooltip">
+                <li>ROUNDING LIMIT</li>
+                <span class="tooltiptext regular">this feature doesn't exist yet</span>
+            </div>
+        </ul>
+
+        <h3>DANGER</h3>
+        <ul>
+            <div class="tooltip">
+                <li><button id="delete-all" class="danger" onclick="clearAll()">CLEAR ALL DATA</button></li>
+                <span class="tooltiptext danger">clears all save data</span>
+            </div>
+        </ul>
+
+        <dialog id="colorSchemeModal" class="modal">
+            <span style="font-size: 40px;">COLOUR SCHEME</span>
+
+            <div class="modalMain">
+                <span class="text">Dark Mode</span>
+                <label class="toggle">
+                  <input type="checkbox" checked id="darkModeCheck">
+                  <span class="slider"></span>
+                </label>
+
+                <br>
+
+                <label>
+                  <span style="font-size: 21px;">Default color</span>
+                  <input type="text" id="inputColour">
+                </label>
+            </div>
+
+            <form method="dialog">
+                <button class="modalButton">x</button>
+            </form>
+
+        </dialog>
+    </div>
+
+</body>
+
+</html>

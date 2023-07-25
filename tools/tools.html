@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body onload="populateNavbar(); populateToolList(); generateList();">
+
+    <div id="sidenav"></div>
+
+    <div class="main">
+        <h1><span id="utils-header">TOOLS</span></h1>
+
+        <input id="search-bar" placeholder="search for tools..."></input>
+
+        <div id="tools">
+            <p>LOADING...</p>
+        </div>
+        <h2>COMING SOON</h2>
+        <h3>CONVERSIONS</h3>
+        <ul>
+            <li><a>TIME</a></li>
+            <li><a>AREA</a></li>
+            <li><a>STORAGE</a></li>
+            <li><a>VOLUME</a></li>
+            <li><a>CURRENCY</a></li>
+        </ul>
+        <h3>TIMERS</h3>
+        <ul>
+            <li><a>STOPWATCH</a></li>
+            <li><a>COUNTDOWN</a></li>
+            <li><a>POMODORO</a></li>
+        </ul>
+        <h3>GENERATORS</h3>
+        <ul>
+            <li><a>RANDOM NUMBER</a></li>
+            <li><a>PASSWORD</a></li>
+            <li><a>QR CODE</a></li>
+        </ul>
+    </div>
+
+    <script src="../pageNav.js"></script>
+    <script src="tools.js"></script>
+    <script src="toolsList.js"></script>
+
+</body>
+
+</html>
