@@ -1,10 +1,10 @@
 function populateNavbar() {
     const links = {
-        "Home": "index.html",
-        "About": "about.html",
-        "Tools": "tools.html",
-        "Saved": "saved.html",
-        "Settings": "settings.html",
+        "Home": "../../index.html",
+        "About": "../../about/index.html",
+        "Tools": "../../tools/index.html",
+        "Saved": "../../saved/index.html",
+        "Settings": "../../settings/index.html",
     }
 
     let content = ""
@@ -14,7 +14,7 @@ function populateNavbar() {
         const value = links[key];
         console.log(`${key}: ${value}`);
 
-        content = content.concat('<a href="../../', value, '">', key, '</a>\n')
+        content = content.concat('<a href="', value, '">', key, '</a>\n')
     }
 
     document.getElementById("sidenav").innerHTML = content
