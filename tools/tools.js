@@ -37,7 +37,7 @@ function populateList(tools) {
 
         console.log(tools[category])
         for (tool in tools[category]) {
-            content = content.concat('<li><a href="tools/conversions/', tools[category][tool], '">', tool, '</a></li>\n')
+            content = content.concat('<li><a href="../tools/conversions/', tools[category][tool], '">', tool, '</a></li>\n')
         }
 
         content = content.concat("</ul>")
