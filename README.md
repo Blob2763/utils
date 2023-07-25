@@ -6,8 +6,9 @@ your online toolbox
 - [callumjt](https://github.com/callumjt/)
 
 ## ROADMAP
-- Search [IN PROGRESS]
 - Settings [IN PROGRESS]
+    - Light / dark theme [IN PROGRESS]
+    - Custom themes
 - More tools:
     - Conversions
     - Timers
