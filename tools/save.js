@@ -55,18 +55,26 @@ function getAllSaved() {
     return saved
 }
 
-function displayAllSaved() {
+function linkPart(home) {
+    if (home) {
+        return "tools/conversions/"
+    } else {
+        return "../tools/conversions/"
+    }
+}
+
+function displayAllSaved(home) {
     let content = "";
     const allSaved = getAllSaved();
 
     for (tool of allSaved) {
         const name = tool.toUpperCase()
         if (tool === "distance") {
-            content = content.concat('<li><a href="tools/conversions/', tool, '.html">', "LENGTH", "</a></li>")
-            console.log('<li><a href="tools/conversions/', tool, '.html">', "LENGTH", "</a></li>")
+            content = content.concat('<li><a href="', linkPart(home), tool.toLowerCase(), '.html">', "LENGTH", "</a></li>")
+            console.log('<li><a href="', linkPart(home), tool.toLowerCase(), '.html">', "LENGTH", "</a></li>")
         } else {
-            content = content.concat('<li><a href="tools/conversions/', tool, '.html">', name, "</a></li>")
-            console.log('<li><a href="tools/conversions/', tool, '.html">', name, "</a></li>")
+            content = content.concat('<li><a href="', linkPart(home), tool.toLowerCase(), '.html">', name, "</a></li>")
+            console.log('<li><a href="', linkPart(home), tool.toLowerCase(), '.html">', name, "</a></li>")
         }
     }
 
