@@ -55,7 +55,7 @@ function switchMode(pic) {
     var colour = settings.split(',')[1]
 
     localStorage.setItem('settings', mode == "1" ? 0 + "," + colour : 1 + "," + colour)
-    pic.src = mode == "1" ? '../imgs/light.svg' : '../imgs/dark.svg'
+    pic.src = mode == "1" ? '/utils/imgs/light.svg' : '/utils/imgs/dark.svg'
     document.getElementById('theme-style').setAttribute('href', mode == "1" ? '/utils/themes/light.css' : '/utils/themes/dark.css')
 }
 
