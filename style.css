@@ -2,17 +2,6 @@
 
 body {
     font-family: 'Space Mono', monospace;
-
-    --text: #fafafa;
-    --background: #050505;
-    --background-darker: #292929;
-    --primary: #23CE6B;
-    --secondary: #062d24;
-    --accent: #85ff66;
-
-    --warning: #ff3535;
-    --warning-background: #3f0c0c;
-
     color: var(--text);
     background-color: var(--background);
 }
@@ -163,6 +152,11 @@ button {
     font-size: 24px;
 }
 
+::placeholder {
+    color: var(--text);
+    opacity: 1;
+}
+
 #swap {
     width: 37px;
     height: 37px;
@@ -230,7 +224,7 @@ ul {
     height: 60%;
     position: relative;
     border: none;
-    color: white;
+    color: var(--text);
 
     max-width: 992px;
     min-height: 408px;
@@ -353,4 +347,30 @@ ul {
 
 #search-bar:-ms-input-placeholder {
     font-style: italic;
+}
+
+/* SWITCH */
+
+.darkSwitch {
+    position: absolute;
+    bottom: 15px;
+    right: 10px;
+    width: 32px;
+    height: 32px;
+    border-radius: 0.5rem;
+    transition: all .15s;
+    text-align: center;
+    
+}
+
+.darkSwitch:hover {
+    background-color: var(--switch-bg);
+    cursor: pointer;
+}
+
+.darkSwitchIcon {
+    position: relative;
+    width: 24px;
+    height: 24px;
+    top: 3px;
 }

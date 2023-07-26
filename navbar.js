@@ -1,10 +1,10 @@
 function populateNavbar() {
     const links = {
-        "Home": "index.html",
-        "About": "about/index.html",
-        "Tools": "tools/index.html",
-        "Saved": "saved/index.html",
-        "Settings": "settings/index.html",
+        "Home": "/",
+        "About": "/about",
+        "Tools": "/tools",
+        "Saved": "/saved",
+        "Settings": "/settings",
     }
 
     let content = ""
@@ -12,10 +12,61 @@ function populateNavbar() {
     const keys = Object.keys(links);
     for (const key of keys) {
         const value = links[key];
-        console.log(`${key}: ${value}`);
-
         content = content.concat('<a href="', value, '">', key, '</a>\n')
     }
 
-    document.getElementById("sidenav").innerHTML = content
+    var settings = localStorage.getItem('settings')
+    if (settings == undefined || settings == NaN || settings == null) {
+        localStorage.setItem('settings', '1,#23CE6B') // 1 = dark mode, 0 = light mode
+        settings = localStorage.getItem('settings')
+    }
+    var mode = settings.split(',')[0]
+
+    const styleSheet = document.createElement('link')
+    styleSheet.rel = "stylesheet"
+    styleSheet.href = mode == "1" ? '/themes/dark.css' : '/themes/light.css'
+    styleSheet.id = "theme-style"
+
+    const switcher = document.createElement('div');
+    switcher.className = "darkSwitch"
+    switcher.id = "darkSwitch"
+
+    const icon = document.createElement('img');
+    icon.src = getIcon(icon)
+    icon.className = "darkSwitchIcon"
+
+    switcher.addEventListener('click', function(e) {
+        switchMode(icon);
+    })
+
+    document.getElementById("sidenav").innerHTML = content;
+    document.body.appendChild(styleSheet)
+    document.getElementById('sidenav').appendChild(switcher);
+    switcher.appendChild(icon);
+}
+
+function switchMode(pic) {
+    var settings = localStorage.getItem('settings')
+    if (settings == undefined || settings == NaN || settings == null) {
+        localStorage.setItem('settings', '1,#23CE6B') // 1 = dark mode, 0 = light mode
+        settings = localStorage.getItem('settings')
+    }
+    var mode = settings.split(',')[0]
+    var colour = settings.split(',')[1]
+
+    localStorage.setItem('settings', mode == "1" ? 0 + "," + colour : 1 + "," + colour)
+    pic.src = mode == "1" ? '/imgs/light.svg' : '/imgs/dark.svg'
+    document.getElementById('theme-style').setAttribute('href', mode == "1" ? '/themes/light.css' : '/themes/dark.css')
+}
+
+function getIcon(pic) {
+    var settings = localStorage.getItem('settings')
+    if (settings == undefined || settings == NaN || settings == null) {
+        localStorage.setItem('settings', '1,#23CE6B') // 1 = dark mode, 0 = light mode
+        settings = localStorage.getItem('settings')
+    }
+    var mode = settings.split(',')[0]
+    var colour = settings.split(',')[1]
+
+    return mode == "1" ? '/imgs/dark.svg' : '/imgs/light.svg'
 }
