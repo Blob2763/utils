@@ -24,7 +24,7 @@ function populateNavbar() {
 
     const styleSheet = document.createElement('link')
     styleSheet.rel = "stylesheet"
-    styleSheet.href = mode == "1" ? '/themes/dark.css' : '/themes/light.css'
+    styleSheet.href = mode == "1" ? '../themes/dark.css' : '../themes/light.css'
     styleSheet.id = "theme-style"
 
     const switcher = document.createElement('div');
@@ -55,8 +55,8 @@ function switchMode(pic) {
     var colour = settings.split(',')[1]
 
     localStorage.setItem('settings', mode == "1" ? 0 + "," + colour : 1 + "," + colour)
-    pic.src = mode == "1" ? '/imgs/light.svg' : '/imgs/dark.svg'
-    document.getElementById('theme-style').setAttribute('href', mode == "1" ? '/themes/light.css' : '/themes/dark.css')
+    pic.src = mode == "1" ? '../imgs/light.svg' : '../imgs/dark.svg'
+    document.getElementById('theme-style').setAttribute('href', mode == "1" ? '../themes/light.css' : '../themes/dark.css')
 }
 
 function getIcon(pic) {
@@ -68,5 +68,5 @@ function getIcon(pic) {
     var mode = settings.split(',')[0]
     var colour = settings.split(',')[1]
 
-    return mode == "1" ? '/imgs/dark.svg' : '/imgs/light.svg'
+    return mode == "1" ? '../imgs/dark.svg' : '../imgs/light.svg'
 }
