@@ -46,10 +46,13 @@
 
         button.addEventListener('click', function(e) {
 
-            var input1 = parseInt(document.getElementById('input1').value)
-            var input2 = parseInt(document.getElementById('input2').value)
+            var value1 = document.getElementById('input1').value
+            var value2 = document.getElementById('input2').value
 
-            if (!input1 || !input2) {
+            var input1 = value1 ? parseInt(value1) : ''
+            var input2 = value2 ? parseInt(value2) : ''
+
+            if (input1 === '' || input2 === '') {
                 output.innerText = 'Please fill in both boxes'
             } else if (input1 >= input2) {
                 output.innerText = 'Min cant be bigger than Max and they cant be the same'
