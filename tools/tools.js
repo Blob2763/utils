@@ -1,7 +1,7 @@
 // DONT TOUCH THIS CODE ITS SO HARD TO READ D:
 
 function getData() {  // gets data and returns it as a promise whatever that is
-    return fetch("https://blob2763.github.io/utils/tools.json")
+    return fetch("../tools.json")
         .then((response) => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');

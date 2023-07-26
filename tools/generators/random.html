@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../../style.css">
+
+    <script src="../../navbar.js"></script>
+    
+</head>
+
+<body onload="populateNavbar()">
+
+    <div id="sidenav"></div>
+
+    <div class="main">
+
+        <h1>Random Number Generator</h1>
+
+        <label>
+            <span>Min</span>
+            <input type="text" id="input1"></input>
+        </label>
+
+        <br>
+
+        <label>
+            <span>Max</span>
+            <input type="text" id="input2"></input>
+        </label>
+
+        <br><br>
+
+        <button id="random" class="cursorHover">Randomise</button>
+
+        <br><br>
+
+        <p id="output"></p>
+
+    </div>
+
+    <script>
+
+        var button = document.getElementById('random')
+        var output = document.getElementById('output')
+
+        button.addEventListener('click', function(e) {
+
+            var input1 = parseInt(document.getElementById('input1').value)
+            var input2 = parseInt(document.getElementById('input2').value)
+
+            if (!input1 || !input2) {
+                output.innerText = 'Please fill in both boxes'
+            } else if (input1 >= input2) {
+                output.innerText = 'Min cant be bigger than Max and they cant be the same'
+            } else {
+                var random = Math.floor(Math.random() * (input2 - input1)) + input1;
+                output.innerText = random
+            }
+        })
+
+    </script>
+
+</body>
+</html>

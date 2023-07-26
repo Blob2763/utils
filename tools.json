@@ -1,8 +1,12 @@
 [
     {
-       "CONVERSIONS":{
-          "TEMPERATURE":"temperature.html",
-          "LENGTH":"distance.html"
-       }
+      "CONVERSIONS": {
+         "TEMPERATURE": "temperature.html",
+         "LENGTH": "distance.html"
+          
+      },
+      "GENERATORS": {
+         "RANDOM NUMBER": "random.html"
+      }
     }
  ]

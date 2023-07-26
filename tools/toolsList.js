@@ -1,5 +1,6 @@
 function getJSON() {
-    return fetch('https://blob2763.github.io/utils/tools.json')
+    console.log(fetch('../tools.json').then((response) => response.json()))
+    return fetch('../tools.json')
         .then((response) => response.json());
 }
 
