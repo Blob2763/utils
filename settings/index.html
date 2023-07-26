@@ -8,6 +8,9 @@
     <script src="../pageNav.js"></script>
     <script src="../tools/save.js" defer></script>
     <script src="settings.js" defer></script>
+
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 
 <body onload="populateNavbar()">
@@ -45,20 +48,20 @@
             <div class="modalMain">
                 <span class="text">Dark Mode</span>
                 <label class="toggle">
-                  <input type="checkbox" checked id="darkModeCheck">
-                  <span class="slider"></span>
+                    <input type="checkbox" checked id="darkModeCheck">
+                    <span class="slider"></span>
                 </label>
 
                 <br>
 
                 <label>
-                  <span style="font-size: 21px;">Default color</span>
-                  <input type="text" id="inputColour">
+                    <span style="font-size: 21px;">Default color</span>
+                    <input type="text" id="inputColour">
                 </label>
             </div>
 
             <form method="dialog">
-                <button class="modalButton">x</button>
+                <button class="modalButton"><span class="material-symbols-outlined">close</span></button>
             </form>
 
         </dialog>
