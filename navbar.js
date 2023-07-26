@@ -1,10 +1,10 @@
 function populateNavbar() {
     const links = {
-        "Home": "/",
-        "About": "/about",
-        "Tools": "/tools",
-        "Saved": "/saved",
-        "Settings": "/settings",
+        "Home": "/utils",
+        "About": "/utils/about",
+        "Tools": "/utils/tools",
+        "Saved": "/utils/saved",
+        "Settings": "/utils/settings",
     }
 
     let content = ""
