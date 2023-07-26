@@ -6,7 +6,6 @@ your online toolbox
 - [callumjt](https://github.com/callumjt/)
 
 ## ROADMAP
-- Search [IN PROGRESS]
 - Settings [IN PROGRESS]
 - More tools:
     - Conversions
