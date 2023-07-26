@@ -24,7 +24,7 @@ function populateNavbar() {
 
     const styleSheet = document.createElement('link')
     styleSheet.rel = "stylesheet"
-    styleSheet.href = mode == "1" ? '../themes/dark.css' : '../themes/light.css'
+    styleSheet.href = mode == "1" ? '/utils/themes/dark.css' : '/utils/themes/light.css'
     styleSheet.id = "theme-style"
 
     const switcher = document.createElement('div');
