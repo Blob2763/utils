@@ -56,7 +56,7 @@ function switchMode(pic) {
 
     localStorage.setItem('settings', mode == "1" ? 0 + "," + colour : 1 + "," + colour)
     pic.src = mode == "1" ? '../imgs/light.svg' : '../imgs/dark.svg'
-    document.getElementById('theme-style').setAttribute('href', mode == "1" ? '../themes/light.css' : '../themes/dark.css')
+    document.getElementById('theme-style').setAttribute('href', mode == "1" ? '/utils/themes/light.css' : '/utils/themes/dark.css')
 }
 
 function getIcon(pic) {
@@ -68,5 +68,5 @@ function getIcon(pic) {
     var mode = settings.split(',')[0]
     var colour = settings.split(',')[1]
 
-    return mode == "1" ? '../imgs/dark.svg' : '../imgs/light.svg'
+    return mode == "1" ? '/utils/imgs/dark.svg' : '/utils/imgs/light.svg'
 }
