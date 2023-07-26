@@ -13,21 +13,21 @@ var darkMode = parseInt(settings.split(',')[0])
 var mainColour = settings.split(',')[1]
 
 darkModeInput.value = mainColour;
-darkModeCheckbox.checked = darkMode == 1 ? true : false;
+// darkModeCheckbox.checked = darkMode == 1 ? true : false;
 
 colorSchemeText.addEventListener('click', function () {
     colorScheme.showModal();
 })
-
-darkModeCheckbox.addEventListener('click', function (e) {
-    darkMode = darkMode == 1 ? 0 : 1;
-    localStorage.setItem('settings', darkMode + ',' + mainColour);
-    settings = localStorage.getItem('settings')
-})
-
-darkModeInput.addEventListener('change', function (e) {
-    console.log(darkModeInput.value)
-    mainColour = darkModeInput.value.length == 7 ? darkModeInput.value : mainColour;
-    localStorage.setItem('settings', darkMode + ',' + mainColour)
-    settings = localStorage.getItem('settings')
-})
+// 
+// darkModeCheckbox.addEventListener('click', function (e) {
+//     darkMode = darkMode == 1 ? 0 : 1;
+//     localStorage.setItem('settings', darkMode + ',' + mainColour);
+//     settings = localStorage.getItem('settings')
+// })
+// 
+// darkModeInput.addEventListener('change', function (e) {
+//     console.log(darkModeInput.value)
+//     mainColour = darkModeInput.value.length == 7 ? darkModeInput.value : mainColour;
+//     localStorage.setItem('settings', darkMode + ',' + mainColour)
+//     settings = localStorage.getItem('settings')
+// })
