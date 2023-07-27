@@ -78,8 +78,8 @@ function category(tool) {
             toolsJSON = toolsJSON[0]
             console.log(toolsJSON);
 
-            for (category in data[0]) {
-                if (tool in data[0][category]) {
+            for (category in toolsJSON) {
+                if (tool in toolsJSON[category]) {
                     console.log(category);
                     content = category
                 }
