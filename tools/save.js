@@ -87,7 +87,7 @@ function category(tool) {
         })
 
         .catch((error) => {
-            content = ""
+            content = "error"
             console.error('Error fetching tools JSON:', error);
         });
 
