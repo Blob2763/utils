@@ -349,12 +349,23 @@ ul {
     font-style: italic;
 }
 
-/* SWITCH */
+/* BOTTOM OF NAVBAR */
 
-.darkSwitch {
+.navbar-bottom {
     position: absolute;
     bottom: 15px;
-    right: 10px;
+    width: 152px;
+    left: 3px;
+    height: 43px;
+    background-color: var(--background-darker);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar-b-button {
     width: 32px;
     height: 32px;
     border-radius: 0.5rem;
@@ -363,14 +374,59 @@ ul {
     
 }
 
-.darkSwitch:hover {
+.navbar-b-button:hover {
     background-color: var(--switch-bg);
     cursor: pointer;
 }
 
-.darkSwitchIcon {
+.navbar-b-button:active {
+    scale: 0.9
+}
+
+.navbar-b-button-img {
     position: relative;
     width: 24px;
     height: 24px;
     top: 3px;
+}
+
+.feedbackModal {
+    width: 500px;
+    height: 400px;
+    position: relative;
+    border: none;
+    background-color: var(--background-darker);
+    color: var(--text);
+    border-radius: 12px;
+}
+
+.xButtonModal {
+    position: absolute;
+    right: 7px;
+    top: 0;
+    font-size: larger;
+}
+
+.xButtonModal:hover {
+    cursor: pointer;
+}
+
+.feedbackSubmitButton {
+    width: 90px;
+    height: 30px;
+    background-color: var(--primary);
+    text-align: center;
+    border-radius: 12px;
+    position: absolute;
+    bottom: 15px;
+}
+
+.feedbackSubmitButton:hover {
+    cursor: pointer;
+}
+
+/* cursor presets for classes */
+
+.cursorHover:hover {
+    cursor: pointer;
 }
