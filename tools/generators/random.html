@@ -6,16 +6,20 @@
     <link rel="stylesheet" href="../../style.css">
 
     <script src="../../navbar.js"></script>
+    <script src="../save.js"></script>
     
 </head>
 
-<body onload="populateNavbar()">
+<body onload="populateNavbar(); displaySave('RANDOM NUMBER')">
 
     <div id="sidenav"></div>
 
     <div class="main">
 
-        <h1>Random Number Generator</h1>
+        <div id="top">
+            <h1 id="heading"><span id="utils-header">RANDOM NUMBER</span> GENERATORS</h1>
+            <button id="save" onclick="save('RANDOM NUMBER')"></button>
+        </div>
 
         <label>
             <span>Min</span>
