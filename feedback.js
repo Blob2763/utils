@@ -89,6 +89,7 @@ function sendMessageToDiscord(message) {
     .then((response) => {
       if (response.ok) {
         feedbackText.innerText = "Thank you for your feedback"
+       modal.close()
       } else {
         console.error('Failed to send message to Discord:', response.statusText);
       }
