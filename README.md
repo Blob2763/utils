@@ -11,4 +11,3 @@ your online toolbox
     - Conversions
     - Timers
     - Generators
-- Tool requests
