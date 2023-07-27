@@ -1,3 +1,9 @@
+function getJSON() {
+    console.log(fetch('../tools.json').then((response) => response.json()))
+    return fetch('../tools.json')
+        .then((response) => response.json());
+}
+
 function getSaveData() {
     return { ...localStorage }
 }
@@ -55,12 +61,40 @@ function getAllSaved() {
     return saved
 }
 
-function linkPart(home) {
+function linkStart(home) {
     if (home) {
-        return "tools/conversions/"
+        return "tools/"
     } else {
-        return "../tools/conversions/"
+        return "../tools/"
     }
+}
+
+function category(tool) {
+    tool = tool.toUpperCase()
+    let content = "";
+    
+    getJSON()
+        .then((toolsJSON) => {
+            toolsJSON = toolsJSON[0]
+            console.log(toolsJSON);
+
+            for (category in data[0]) {
+                if (tool in data[0][category]) {
+                    console.log(category);
+                    content = category
+                }
+            }
+        })
+
+        .catch((error) => {
+            content = ""
+            console.error('Error fetching tools JSON:', error);
+        });
+
+    content = content.concat("/")
+    
+    console.log("content", content);
+    return content
 }
 
 function displayAllSaved(home) {
@@ -70,11 +104,11 @@ function displayAllSaved(home) {
     for (tool of allSaved) {
         const name = tool.toUpperCase()
         if (tool === "distance") {
-            content = content.concat('<li><a href="', linkPart(home), tool.toLowerCase(), '.html">', "LENGTH", "</a></li>")
-            console.log('<li><a href="', linkPart(home), tool.toLowerCase(), '.html">', "LENGTH", "</a></li>")
+            content = content.concat(`<li><a href="${linkStart(home)}${category(tool)}${tool.toLowerCase()}.html">LENGTH</a></li>`)
+            console.log(content.concat(`<li><a href="${linkStart(home)}${category(tool)}${tool.toLowerCase()}.html">LENGTH</a></li>`))
         } else {
-            content = content.concat('<li><a href="', linkPart(home), tool.toLowerCase(), '.html">', name, "</a></li>")
-            console.log('<li><a href="', linkPart(home), tool.toLowerCase(), '.html">', name, "</a></li>")
+            content = content.concat(`<li><a href="${linkStart(home)}${category(tool)}${tool.toLowerCase()}.html">${name}</a></li>`)
+            console.log(content.concat(`<li><a href="${linkStart(home)}${category(tool)}${tool.toLowerCase()}.html">${name}</a></li>`))
         }
     }
 
