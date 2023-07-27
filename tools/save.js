@@ -1,6 +1,6 @@
 function getJSON() {
-    console.log(fetch('../tools.json').then((response) => response.json()))
-    return fetch('../tools.json')
+    console.log(fetch('../../tools.json').then((response) => response.json()))
+    return fetch('../../tools.json')
         .then((response) => response.json());
 }
 
