@@ -43,7 +43,7 @@ function populateNavbar() {
     feedback.id = 'feedback-button'
 
     const icon2 = document.createElement('img')
-    icon2.src = '/imgs/bulb.svg'
+    icon2.src = '/utils/imgs/bulb.svg'
     icon2.className = "navbar-b-button-img"
 
     switcher.addEventListener('click', function(e) {
@@ -62,7 +62,7 @@ function populateNavbar() {
     switcher.appendChild(icon);
 
     var jsFileFeedback = document.createElement('script')
-    jsFileFeedback.src = '/feedback.js'
+    jsFileFeedback.src = '/utils/feedback.js'
     document.head.appendChild(jsFileFeedback)
 }
 
