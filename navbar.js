@@ -1,10 +1,22 @@
 function populateNavbar() {
-    const links = {
-        "Home": "/utils",
-        "About": "/utils/about",
-        "Tools": "/utils/tools",
-        "Saved": "/utils/saved",
-        "Settings": "/utils/settings",
+    var links;
+    console.log(window.location.origin)
+    if (window.location.origin.startsWith('https://utils.is-a.dev')) {
+        links = {
+            "Home": "/",
+            "About": "/about",
+            "Tools": "/tools",
+            "Saved": "/saved",
+            "Settings": "/settings",
+        }
+    } else {
+        links = {
+            "Home": "/index.html",
+            "About": "/about/index.html",
+            "Tools": "/tools/index.html",
+            "Saved": "/saved/index.html",
+            "Settings": "/settings/index.html",
+        }
     }
 
     let content = ""
