@@ -55,7 +55,7 @@ function populateNavbar() {
     feedback.id = 'feedback-button'
 
     const icon2 = document.createElement('img')
-    icon2.src = '/imgs/bulb.svg'
+    icon2.src = mode == "1" ? '/imgs/bulb-dark.svg' : '/imgs/bulb-light.svg'
     icon2.className = "navbar-b-button-img"
 
     switcher.addEventListener('click', function(e) {

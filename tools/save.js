@@ -53,7 +53,7 @@ function getAllSaved() {
         if (tool !== "settings") {
             if (checkSave(tool)) {
                 saved.push(tool);
-            }    
+            }
         }
     }
     console.log(saved);
@@ -69,46 +69,54 @@ function linkStart(home) {
     }
 }
 
-function category(tool) {
-    tool = tool.toUpperCase()
+async function category(tool) {
+    tool = tool.toUpperCase();
     let content = "";
-    
-    getJSON()
-        .then((toolsJSON) => {
-            toolsJSON = toolsJSON[0]
-            console.log(toolsJSON);
 
-            for (category in toolsJSON) {
-                if (tool in toolsJSON[category]) {
-                    console.log(category);
-                    content = category
-                }
+    try {
+        const toolsJSON = await getJSON();
+
+        console.log("TOOLSJSON", toolsJSON[[["PromiseResult"]]]);
+        const firstToolJSON = toolsJSON[0];
+
+        for (const cat in firstToolJSON) {
+            if (tool in firstToolJSON[cat]) {
+                console.log("CATEGORY FOUND:", cat);
+                content = cat;
             }
-        })
+        }
 
-        .catch((error) => {
-            content = "error"
-            console.error('Error fetching tools JSON:', error);
-        });
+        content = content.concat("/");
+        console.log("CONTENT", content);
 
-    content = content.concat("/")
-    
-    console.log("content", content);
-    return content
+        return content;
+
+    } catch (error) {
+        content = "error";
+        console.error('Error fetching tools JSON:', error);
+
+        return content;
+    }
 }
 
-function displayAllSaved(home) {
+
+async function displayAllSaved(home) {
     let content = "";
     const allSaved = getAllSaved();
 
     for (tool of allSaved) {
-        const name = tool.toUpperCase()
+        const name = tool.toUpperCase();
+
+        let cat = await category(tool);
+        cat = cat.toLowerCase()
+
+        console.log("NAME", name)
+        console.log("CATEGORY", cat)
+
         if (tool === "distance") {
-            content = content.concat(`<li><a href="${linkStart(home)}${category(tool)}${tool.toLowerCase()}.html">LENGTH</a></li>`)
-            console.log(content.concat(`<li><a href="${linkStart(home)}${category(tool)}${tool.toLowerCase()}.html">LENGTH</a></li>`))
+            content = content.concat(`<li><a href="${linkStart(home)}${cat}${tool.toLowerCase()}.html">LENGTH</a></li>`)
         } else {
-            content = content.concat(`<li><a href="${linkStart(home)}${category(tool)}${tool.toLowerCase()}.html">${name}</a></li>`)
-            console.log(content.concat(`<li><a href="${linkStart(home)}${category(tool)}${tool.toLowerCase()}.html">${name}</a></li>`))
+            content = content.concat(`<li><a href="${linkStart(home)}${cat}${tool.toLowerCase()}.html">${name}</a></li>`)
         }
     }
 
@@ -117,7 +125,7 @@ function displayAllSaved(home) {
     if (content === "") {
         content = "<li>Click the bookmark on a tool to save it</li>"
     }
-    
+
     document.getElementById("all-saved").innerHTML = content
 }
 
