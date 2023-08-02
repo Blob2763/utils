@@ -19,14 +19,14 @@ function generateList(filter) {
 
                 let nameList = [];
 
-                for (category in toolsJSON) {
-                    console.log("the category is", category);
+                for (cat in toolsJSON) {
+                    console.log("the category is", cat);
 
-                    let categoryData = toolsJSON[category];
+                    let categoryData = toolsJSON[cat];
 
                     for (tool in categoryData) {
                         if (tool.includes(filter.toUpperCase())) {
-                            nameList.push({"tool": tool, "link": categoryData[tool], "category": category});
+                            nameList.push({"tool": tool, "link": categoryData[tool], "category": cat});
                         }
                     }
                 }
@@ -35,14 +35,15 @@ function generateList(filter) {
 
                 let content = ""
                 for (toolData in nameList) {
-                    console.log(toolData);
+                    console.log("tooldata", nameList[toolData]);
 
                     const tool = nameList[toolData]["tool"];
                     const link = nameList[toolData]["link"];
+                    const cat = nameList[toolData]["category"];
 
-                    console.log(tool, link);
+                    console.log(tool, link, cat);
 
-                    content = content.concat(`<li><a href="../tools/${category.toLowerCase()}/${link}">${tool} - ${category}</a></li>`)
+                    content = content.concat(`<li><a href="../tools/${cat.toLowerCase()}/${link}">${tool} - ${cat}</a></li>`)
                 }
 
                 console.log(content);

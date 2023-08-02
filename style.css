@@ -2,44 +2,59 @@
 
 body {
     font-family: 'Space Mono', monospace;
+
     color: var(--text);
+
     background-color: var(--background);
+
+    transition: 0.1s;
 }
 
 /* SIDENAV */
 
 #sidenav {
+    transition: 0.1s;
+
     height: 100%;
     width: 160px;
+
     position: fixed;
     z-index: 1;
     top: 0;
     left: 0;
+
     background-color: var(--background);
+
     border-right: 2px solid var(--secondary);
+
     overflow-x: hidden;
+
     padding-top: 8px;
 }
 
 #sidenav a {
     padding: 6px 8px 6px 16px;
+
     text-decoration: none;
     font-size: 20px;
     color: var(--text);
+
     display: block;
+
     transition: 0.2s;
 }
 
 #sidenav a:hover {
     color: var(--accent);
+
     transition: 0.2s;
 }
 
 .main {
-    margin-left: 192px;
-    /* Same as the width of the sidenav + 32px */
+    margin-left: calc(160px + 32px); /* width of the sidenav + 32px */
+
     font-size: 28px;
-    /* Increased text to enable scrolling */
+    
     padding: 0px 10px;
 }
 
@@ -66,6 +81,7 @@ body {
 #top button {
     width: 40px;
     height: 40px;
+
     border: none;
 
     text-align: center;
@@ -86,6 +102,7 @@ body {
 
 #version {
     font-size: 16px;
+
     margin: 0px;
 
     color: #535353;
@@ -154,6 +171,7 @@ button {
 
 ::placeholder {
     color: var(--text);
+
     opacity: 1;
 }
 
@@ -162,6 +180,7 @@ button {
     height: 37px;
 
     text-align: center;
+
     line-height: 37px;
 }
 
@@ -180,11 +199,17 @@ ul {
 
 .tooltip .tooltiptext {
     opacity: 0;
+
     width: 310px;
+
     color: var(--text);
+
     text-align: center;
+
     border-radius: 6px;
+
     padding: 5px 0;
+
     font-size: 16px;
 
     /* Position the tooltip */
@@ -192,6 +217,7 @@ ul {
     z-index: 1;
     bottom: 100%;
     left: 50%;
+
     margin-left: calc(310px / -2);
 
     transition: opacity 0.1s;
@@ -203,11 +229,13 @@ ul {
 
 .regular {
     border: 1px solid var(--primary);
+
     background-color: var(--secondary);
 }
 
 .danger {
     border: 1px solid var(--warning);
+
     background-color: var(--warning-background);
 }
 
@@ -219,11 +247,16 @@ ul {
 
 .modal {
     background-color: var(--background-darker);
+
     border-radius: 12px;
+
     width: 50%;
     height: 60%;
+
     position: relative;
+
     border: none;
+
     color: var(--text);
 
     max-width: 992px;
@@ -243,6 +276,7 @@ ul {
     top: 5px;
 
     background-color: transparent;
+
     border: none;
 }
 
@@ -256,7 +290,9 @@ ul {
 
 .modalMain {
     position: absolute;
+
     bottom: 0;
+
     height: calc(100% - 90px);
     width: calc(100% - 100px);
 }
@@ -269,10 +305,12 @@ ul {
 
     position: relative;
     display: inline-block;
+
     width: var(--width);
     height: var(--height);
 
     border-radius: var(--height);
+
     cursor: pointer;
 
     border: 1px solid var(--primary);
@@ -286,15 +324,20 @@ ul {
     position: absolute;
     top: 0;
     left: 0;
+
     width: 100%;
     height: 100%;
+
     border-radius: var(--height);
+
     background-color: var(--secondary);
+
     transition: all 0.2s ease-in-out;
 }
 
 .toggle .slider::before {
     content: "";
+
     position: absolute;
     top: 0;
     left: 0;
@@ -303,7 +346,9 @@ ul {
 
     width: calc(var(--height));
     height: calc(var(--height));
+
     border-radius: calc(var(--height) / 2);
+
     background-color: var(--secondary);
 
     border: 1px solid var(--primary);
@@ -356,9 +401,13 @@ ul {
     bottom: 15px;
     width: 152px;
     left: 3px;
+
     height: 43px;
+
     background-color: var(--background-darker);
+
     border-radius: 12px;
+
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -368,14 +417,18 @@ ul {
 .navbar-b-button {
     width: 32px;
     height: 32px;
+
     border-radius: 0.5rem;
+
     transition: all .15s;
+
     text-align: center;
     
 }
 
 .navbar-b-button:hover {
     background-color: var(--switch-bg);
+
     cursor: pointer;
 }
 
@@ -393,17 +446,22 @@ ul {
 .feedbackModal {
     width: 500px;
     height: 400px;
+
     position: relative;
+
     border: none;
-    background-color: var(--background-darker);
-    color: var(--text);
     border-radius: 12px;
+
+    background-color: var(--background-darker);
+
+    color: var(--text);
 }
 
 .xButtonModal {
     position: absolute;
     right: 7px;
     top: 0;
+
     font-size: larger;
 }
 
@@ -414,9 +472,13 @@ ul {
 .feedbackSubmitButton {
     width: 90px;
     height: 30px;
+
     background-color: var(--primary);
+
     text-align: center;
-    border-radius: 12px;
+
+    border-radius: 8px;
+    
     position: absolute;
     bottom: 15px;
 }
