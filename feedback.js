@@ -10,8 +10,8 @@ var modal = document.createElement('dialog')
 modal.className = 'feedbackModal'
 
 var xButton = document.createElement('span')
-xButton.innerText = 'x'
-xButton.className = 'xButtonModal'
+xButton.className = 'xButtonModal material-symbols-outlined'
+xButton.innerText = 'close'
 
 var title = document.createElement('h1')
 title.innerText = 'Tool Ideas'
