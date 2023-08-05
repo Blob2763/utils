@@ -470,20 +470,26 @@ ul {
 }
 
 .feedbackSubmitButton {
+    transition: 0.1s;
+
     width: 90px;
     height: 30px;
 
-    background-color: var(--primary);
+    background-color: var(--secondary);
 
     text-align: center;
+    line-height: 30px;
 
-    border-radius: 8px;
-    
+    border: 1px solid var(--primary);
+    border-radius: 4px;
+
     position: absolute;
     bottom: 15px;
 }
 
 .feedbackSubmitButton:hover {
+    background-color: var(--primary);
+
     cursor: pointer;
 }
 
@@ -491,4 +497,10 @@ ul {
 
 .cursorHover:hover {
     cursor: pointer;
+}
+
+/* CHANGELOG */
+
+#changelog li:before {
+    content: "- ";
 }
