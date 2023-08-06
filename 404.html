@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/imgs/icon.png" type="image/x-icon">
+    <title>something went wrong</title>
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+    <script src="navbar.js"></script>
+
+</head>
+
+<body onload="populateNavbar()">
+
+    <div id="sidenav"></div>
+
+    <div class="main">
+        <h1 id="home-header"><span id="utils-header">404</span> page not found :/</h1>
+        <div id="error"></div>
+
+        <p>you typed something wrong or found an error!</p>
+
+        <img src="/imgs/alan.gif">
+
+        <script>
+            const codes = ["dGhpcyBtZWFucyBub3RoaW5n", "eW91IGZvdW5kIGFuIGVhc3RlciBlZ2c=", "QUxBTg==", "dG90YWxseSByZWFsIGVycm9yIGNvZGU=", "W2luc2VydCBlcnJvciBoZXJlXQ==", "bmV2ZXIgZ29ubmEgZ2l2ZSB5b3UgdXA=", "aGF2ZSBhIG5pY2UgZGF5", "d2hvIGV2ZW4gcmVhZHMgdGhlc2U=", "YWJjZGVmZw=="];
+
+            const codeIdx = Math.floor(Math.random() * codes.length);
+
+            document.getElementById("error").innerText = `ERROR CODE: ${codes[codeIdx]}`
+
+            const webhookUrl = 'https://discord.com/api/webhooks/1137869966830477443/vt64AcIy5J59SIXh8zSQFvQWBxDmmwHmOsqsEqyBhe6CHScQa1MmdcfKr-zvsd1HWGlB';
+
+            function sendMessageToDiscord(message) {
+                const data = {
+                    embeds: [
+                        {
+                            title: "404 ERROR:",
+                            fields: [
+                                {
+                                    name: "URL:",
+                                    value: message
+                                }
+                            ]
+                        }
+                    ]
+                };
+
+                fetch(webhookUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                })
+                    .then((response) => {
+                        if (response.ok) {
+                            console.log("Thank you for your feedback");
+                        } else {
+                            console.error('Failed to send message to Discord:', response.statusText);
+                        }
+                    })
+                    .catch((error) => {
+                        console.error('Error sending message to Discord:', error);
+                    });
+            }
+
+            const url = window.location.href;
+            sendMessageToDiscord(url)
+
+        </script>
+    </div>
+
+</body>
+
+</html>
