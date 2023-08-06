@@ -2,11 +2,13 @@
     {
       "CONVERSIONS": {
          "TEMPERATURE": "temperature.html",
-         "LENGTH": "distance.html"
+         "LENGTH": "distance.html",
+         "TIME": "time.html"
           
       },
       "GENERATORS": {
-         "RANDOM NUMBER": "random.html"
+         "RANDOM NUMBER": "random number.html",
+         "DISCORD TIMESTAMP": "discord timestamp.html"
       }
     }
  ]
