@@ -504,3 +504,12 @@ ul {
 #changelog li:before {
     content: "- ";
 }
+
+/* TIMESTAMP */
+#preview {
+    border-radius: 4px;
+
+    background-color: var(--secondary);
+
+    padding: 1px 6px;
+}

@@ -22,6 +22,20 @@ const data = {
             {"value": "inch", "label": "in",},
         ]
     },
+    "TIME": {
+        "heading": "TIME",
+        "category": "CONVERSIONS",
+        "dropdown": [
+            {"value": "millisecond", "label": "ms",},
+            {"value": "second", "label": "s",},
+            {"value": "minute", "label": "m",},
+            {"value": "hour", "label": "h",},
+            {"value": "day", "label": "d",},
+            {"value": "week", "label": "wk",},
+            {"value": "month", "label": "mo",},
+            {"value": "year", "label": "y",},
+        ]
+    },
 };
 
 function dropdown(type, tool) {

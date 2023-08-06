@@ -4,24 +4,24 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="/imgs/icon.png" type="image/x-icon">
-    <title>UTILS - DISTANCE CONVERSIONS</title>
+    <title>UTILS - TIME CONVERSIONS</title>
     <link rel="stylesheet" href="../../style.css">
 
     <script src="../../navbar.js"></script>
     <script src="../save.js"></script>
     <script src="conversions.js"></script>
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet"href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 
-<body onload="populateConversionSite('DISTANCE'); populateNavbar(); displaySave('DISTANCE')">
+<body onload="populateConversionSite('TIME'); populateNavbar(); displaySave('TIME')">
 
     <div id="sidenav"></div>
 
     <div class="main">
         <div id="top">
             <h1 id="heading"></h1>
-            <button id="save" onclick="save('DISTANCE')"></button>
+            <button id="save" onclick="save('TIME')"></button>
         </div>
 
         <button onclick="swapUnits()" id="swap"><span class="material-symbols-outlined">swap_horiz</span></button>
@@ -54,24 +54,24 @@
                 return rounded
             }
 
-            function convertToBase(unit, value) {  // base is cm
+            function convertToBase(unit, value) {  // base is m
                 let converted = 0;
-                if (unit === "kilometer") {
-                    converted = value * 100000
-                } else if (unit === "meter") {
-                    converted = value * 100
-                } else if (unit === "centimeter") {
+                if (unit === "millisecond") {
+                    converted = value / 60000
+                } else if (unit === "second") {
+                    converted = value / 60
+                } else if (unit === "minute") {
                     converted = value
-                } else if (unit === "millimeter") {
-                    converted = value / 10
-                } else if (unit === "mile") {
-                    converted = value * 160934.4
-                } else if (unit === "yard") {
-                    converted = value * 91.44
-                } else if (unit === "foot") {
-                    converted = value * 30.48
-                } else if (unit === "inch") {
-                    converted = value * 2.54
+                } else if (unit === "hour") {
+                    converted = value * 60
+                } else if (unit === "day") {
+                    converted = value * 1440
+                } else if (unit === "week") {
+                    converted = value * 10080
+                } else if (unit === "month") {
+                    converted = value * 43800
+                } else if (unit === "year") {
+                    converted = value * 525600
                 }
 
                 return converted
@@ -79,22 +79,22 @@
 
             function convertFromBase(unit, value) {
                 let converted = 0;
-                if (unit === "kilometer") {
-                    converted = value / 100000
-                } else if (unit === "meter") {
-                    converted = value / 100
-                } else if (unit === "centimeter") {
+                if (unit === "millisecond") {
+                    converted = value * 60000
+                } else if (unit === "second") {
+                    converted = value * 60
+                } else if (unit === "minute") {
                     converted = value
-                } else if (unit === "millimeter") {
-                    converted = value * 10
-                } else if (unit === "mile") {
-                    converted = value / 160934.4
-                } else if (unit === "yard") {
-                    converted = value / 91.44
-                } else if (unit === "foot") {
-                    converted = value / 30.48
-                } else if (unit === "inch") {
-                    converted = value / 2.54
+                } else if (unit === "hour") {
+                    converted = value / 60
+                } else if (unit === "day") {
+                    converted = value / 1440
+                } else if (unit === "week") {
+                    converted = value / 10080
+                } else if (unit === "month") {
+                    converted = value / 43800
+                } else if (unit === "year") {
+                    converted = value / 525600
                 }
 
                 return converted
