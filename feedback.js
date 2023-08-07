@@ -4,7 +4,7 @@ while (!feedbackButton) {
   feedbackButton = document.getElementById('feedback-button')
 }
 console.log(feedbackButton)
-const webhookUrl = process.env.API_KEY;
+const webhookUrl = process.env.FEEDBACK_URL;
 
 var modal = document.createElement('dialog')
 modal.className = 'feedbackModal'
