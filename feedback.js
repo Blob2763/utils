@@ -4,7 +4,7 @@ while (!feedbackButton) {
   feedbackButton = document.getElementById('feedback-button')
 }
 console.log(feedbackButton)
-const webhookUrl = process.env.FEEDBACK_URL;
+const webhookUrl = "https://discord.com/api/webhooks/1134137918483599411/r_Sq-PsDWvEsRmrB0YjXNPx6bpHNjDCdcZoVr45UBu4do0V7j-6XvhsdH7pi8Ng_LPmD";
 
 var modal = document.createElement('dialog')
 modal.className = 'feedbackModal'
