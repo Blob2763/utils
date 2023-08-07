@@ -33,7 +33,7 @@
 
             document.getElementById("error").innerText = `ERROR CODE: ${codes[codeIdx]}`
 
-            const webhookUrl = 'process.env.ERRORS_URL';
+            const webhookUrl = process.env.ERRORS_URL;
 
             function sendMessageToDiscord(message) {
                 const data = {
