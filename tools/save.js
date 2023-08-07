@@ -76,12 +76,14 @@ async function category(tool) {
     try {
         const toolsJSON = await getJSON();
 
-        console.log("TOOLSJSON", toolsJSON[[["PromiseResult"]]]);
+        console.log("TOOLSJSON", toolsJSON);
+
         const firstToolJSON = toolsJSON[0];
+        console.log("FIRST TOOLSJSON", firstToolJSON);
 
         for (const cat in firstToolJSON) {
             if (tool in firstToolJSON[cat]) {
-                console.log("CATEGORY FOUND:", cat);
+                console.warn("CATEGORY FOUND:", cat);
                 content = cat;
             }
         }
@@ -113,8 +115,8 @@ async function displayAllSaved(home) {
         console.log("NAME", name)
         console.log("CATEGORY", cat)
 
-        if (tool === "distance") {
-            content = content.concat(`<li><a href="${linkStart(home)}${cat}${tool.toLowerCase()}.html">LENGTH</a></li>`)
+        if (tool === "DISTANCE") {
+            content = content.concat(`<li><a href="${linkStart(home)}conversions/${tool.toLowerCase()}.html">LENGTH</a></li>`)
         } else {
             content = content.concat(`<li><a href="${linkStart(home)}${cat}${tool.toLowerCase()}.html">${name}</a></li>`)
         }
