@@ -115,7 +115,7 @@ async function displayAllSaved(home) {
         console.log("NAME", name)
         console.log("CATEGORY", cat)
 
-        if (tool === "DISTANCE") {
+        if (tool === "DISTANCE" || tool === "LENGTH") {
             content = content.concat(`<li><a href="${linkStart(home)}conversions/${tool.toLowerCase()}.html">LENGTH</a></li>`)
         } else {
             content = content.concat(`<li><a href="${linkStart(home)}${cat}${tool.toLowerCase()}.html">${name}</a></li>`)
