@@ -36,6 +36,21 @@ const data = {
             {"value": "year", "label": "y",},
         ]
     },
+    "AREA": {
+        "heading": "AREA",
+        "category": "CONVERSIONS",
+        "dropdown": [
+            {"value": "square kilometer", "label": "km²",},
+            {"value": "square meter", "label": "m²",},
+            {"value": "square centimeter", "label": "cm²",},
+            {"value": "square mile", "label": "mi²",},
+            {"value": "square yard", "label": "yd²",},
+            {"value": "square foot", "label": "ft²",},
+            {"value": "square inch", "label": "in²",},
+            {"value": "hectare", "label": "ha",},
+            {"value": "acre", "label": "ac",},
+        ]
+    },
 };
 
 function dropdown(type, tool) {

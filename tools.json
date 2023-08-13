@@ -3,8 +3,8 @@
       "CONVERSIONS": {
          "TEMPERATURE": "temperature.html",
          "LENGTH": "distance.html",
-         "TIME": "time.html"
-          
+         "TIME": "time.html",
+         "AREA": "area.html"
       },
       "GENERATORS": {
          "RANDOM NUMBER": "random number.html",
