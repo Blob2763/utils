@@ -56,6 +56,7 @@ function populateNavbar() {
 
     const icon2 = document.createElement('img')
     icon2.src = mode == "1" ? '/imgs/bulb-dark.svg' : '/imgs/bulb-light.svg'
+    icon2.id = "feedback-button-img"
     icon2.className = "navbar-b-button-img"
 
     switcher.addEventListener('click', function(e) {
@@ -89,6 +90,10 @@ function switchMode(pic) {
 
     localStorage.setItem('settings', mode == "1" ? 0 + "," + colour : 1 + "," + colour)
     pic.src = mode == "1" ? '/imgs/light.svg' : '/imgs/dark.svg'
+
+    const feedbackIcon = document.getElementById("feedback-button-img")
+    feedbackIcon.src = mode == "1" ? '/imgs/bulb-light.svg' : '/imgs/bulb-dark.svg'
+
     document.getElementById('theme-style').setAttribute('href', mode == "1" ? '/themes/light.css' : '/themes/dark.css')
 }
 
