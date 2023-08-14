@@ -10,6 +10,7 @@
     <script src="../../navbar.js"></script>
     <script src="../save.js"></script>
     <script src="conversions.js"></script>
+    <script src="/settings/colour scheme.js" defer></script>
 
     <link rel="stylesheet"href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
@@ -47,9 +48,11 @@
         </table>
 
         <script>
-            function roundToDecimalPlaces(number, places) {
-                const multiplier = 10 ** places
-                const rounded = Math.round((number + Number.EPSILON) * multiplier) / multiplier
+            function round(number) {
+                const places = localStorage.getItem("rounding");
+
+                const multiplier = 10 ** places;
+                const rounded = Math.round((number + Number.EPSILON) * multiplier) / multiplier;
 
                 return rounded
             }
@@ -120,12 +123,12 @@
 
                 if (edit === "a") {
                     let converted = convert(unitsA, unitsB, inputA);
-                    converted = roundToDecimalPlaces(converted, 8)
+                    converted = round(converted)
 
                     document.getElementById("input-b").value = converted
                 } else if (edit === "b") {
                     let converted = convert(unitsB, unitsA, inputB);
-                    converted = roundToDecimalPlaces(converted, 8)
+                    converted = round(converted)
 
                     document.getElementById("input-a").value = converted
                 }

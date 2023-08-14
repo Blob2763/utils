@@ -5,7 +5,7 @@ const darkModeCheckbox = document.getElementById('darkModeCheck');
 const darkModeInput = document.getElementById('inputColour');
 
 if (localStorage.getItem('settings') == undefined || localStorage.getItem('settings') == null) {
-    localStorage.setItem('settings', '1,#23CE6B')
+    localStorage.setItem('settings', '1,default')
 }
 
 var settings = localStorage.getItem('settings')
@@ -31,3 +31,18 @@ colorSchemeText.addEventListener('click', function () {
 //     localStorage.setItem('settings', darkMode + ',' + mainColour)
 //     settings = localStorage.getItem('settings')
 // })
+
+function saveRounding() {
+    let rounding = document.getElementById("rounding-limit").value;
+    if (rounding > 12) {
+        rounding = 12
+    } else if (rounding < 0) {
+        rounding = 0
+    }
+    document.getElementById("rounding-limit").value = rounding
+
+    localStorage.setItem("rounding", rounding);
+}
+
+document.getElementById("rounding-limit")
+    .addEventListener("input", (event) => saveRounding());

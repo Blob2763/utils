@@ -46,11 +46,13 @@ function save(tool) {
 }
 
 function getAllSaved() {
+    const notTools = ["settings", "rounding", "debug"];
+
     const saveData = getSaveData();
     let saved = [];
 
     for (tool in saveData) {
-        if (tool !== "settings") {
+        if (!(notTools.includes(tool))) {
             if (checkSave(tool)) {
                 saved.push(tool);
             }
