@@ -10,8 +10,10 @@
     <script src="../navbar.js"></script>
     <script src="../tools/save.js" defer></script>
     <script src="./settings.js" defer></script>
+    <script src="/settings/colour scheme.js" defer></script>
 
-    <link rel="stylesheet"href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 
 <body onload="populateNavbar()">
@@ -24,14 +26,15 @@
         <ul>
             <div class="tooltip" id="colorSchemeText">
                 <li class="settingsText">COLOUR SCHEMES</li>
+                <span class="tooltiptext regular">THIS IS A BETA FEATURE</span>
             </div>
         </ul>
 
         <h3>CONVERSIONS</h3>
         <ul>
             <div class="tooltip">
-                <li>ROUNDING LIMIT</li>
-                <span class="tooltiptext regular">this feature doesn't exist yet</span>
+                <li>ROUNDING LIMIT <input id="rounding-limit" type="number" min="0" max="12"> </li>
+                <span class="tooltiptext regular">how many decimal places conversions are rounded to</span>
             </div>
         </ul>
 
@@ -57,6 +60,11 @@
                     <span style="font-size: 21px;">Default color</span>
                     <input type="text" id="inputColour" pattern="^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$">
                 </label>
+
+                <button onclick="saveColourScheme()">UPDATE COLOURS</button>
+                <button onclick="resetColours()">RESET</button>
+
+                <p style="font-size: 16px;">This is a beta feature, so it is still being improved. If you find any bugs, let us know in <a href="https://discord.gg/srRcAYTt4C" target="_blank">Discord server</a></p>
             </div>
 
             <form method="dialog">
@@ -66,6 +74,15 @@
         </dialog>
     </div>
 
+    <script>
+        let rounding = localStorage.getItem("rounding");
+        if (rounding === null) {
+            localStorage.setItem("rounding", 8);
+        }
+        
+        rounding = localStorage.getItem("rounding");
+        document.getElementById("rounding-limit").value = rounding
+    </script>
 </body>
 
 </html>

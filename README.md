@@ -6,7 +6,6 @@ your online toolbox
 - [callumjt](https://github.com/callumjt/)
 
 ## ROADMAP
-- Settings [IN PROGRESS]
 - More tools:
     - Conversions
     - Timers
@@ -22,3 +21,6 @@ If you're making a conversion:
 - Add an entry to "data" in conversions.js and fill in all the info
 - Add conversion code by editing the "base" functions
 - Everything else should be done :)
+
+When adding a new setting:
+- Add the localStorage key to notTools in save.js
