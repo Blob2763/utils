@@ -55,7 +55,7 @@ function populateNavbar() {
     feedback.id = 'feedback-button'
 
     const icon2 = document.createElement('img')
-    icon2.src = mode == "1" ? '/imgs/bulb-dark.svg' : '/imgs/bulb-light.svg'
+    icon2.src = mode == "1" ? '/imgs/feedback-dark.svg' : '/imgs/feedback-light.svg'
     icon2.id = "feedback-button-img"
     icon2.className = "navbar-b-button-img"
 
@@ -92,7 +92,7 @@ function switchMode(pic) {
     pic.src = mode == "1" ? '/imgs/light.svg' : '/imgs/dark.svg'
 
     const feedbackIcon = document.getElementById("feedback-button-img")
-    feedbackIcon.src = mode == "1" ? '/imgs/bulb-light.svg' : '/imgs/bulb-dark.svg'
+    feedbackIcon.src = mode == "1" ? '/imgs/feedback-light.svg' : '/imgs/feedback-dark.svg'
 
     document.getElementById('theme-style').setAttribute('href', mode == "1" ? '/themes/light.css' : '/themes/dark.css')
 }
