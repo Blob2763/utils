@@ -22,50 +22,49 @@ function rgbToHex(rgb) {
 function multiplyHex(hex, multiplier) {
     let rgb = hexToRgb(hex);
 
-    rgb["r"] = Math.round(rgb["r"] * multiplier[0])
-    rgb["g"] = Math.round(rgb["g"] * multiplier[1])
-    rgb["b"] = Math.round(rgb["b"] * multiplier[2])
+    const r = rgb["r"];
+    const g = rgb["g"];
+    const b = rgb["b"];
+
+    rgb["r"] = Math.round(r * multiplier[0])
+    rgb["g"] = Math.round(g * multiplier[1])
+    rgb["b"] = Math.round(b * multiplier[2])
 
     return rgbToHex(rgb)
 }
 
-// --text: #fafafa;
-// --background: #050505;
-// --background-darker: #292929;
-// --primary: #23CE6B; 2346603
-// --secondary: #062d24; 404772
-// --accent: #85ff66;
-// --switch-bg: #374151;
+function brightenHex(hex, multiplier) {
+    let rgb = hexToRgb(hex);
 
+    const r = rgb["r"];
+    const g = rgb["g"];
+    const b = rgb["b"];
 
-// const primary = "eb4034";
-// const primaryRGB = hexToRgb(primary);
-// console.log(primaryRGB);
+    const isPositive = [
+        multiplier[0] >= 0, 
+        multiplier[1] >= 0, 
+        multiplier[2] >= 0
+    ];
 
-// const secondary = "062d24";
-// const secondaryRGB = hexToRgb(secondary);
-// console.log(secondaryRGB);
+    const difference = [
+        isPositive[0] ? 255 - r : r, 
+        isPositive[1] ? 255 - g : g, 
+        isPositive[2] ? 255 - b : b
+    ];
 
-// const accent = "85ff66";
-// const accentRGB = hexToRgb(accent);
-// console.log(accentRGB);
+    multiplier[0] -= isPositive[0] ? 0 : 1
+    multiplier[0] -= isPositive[0] ? 0 : 1
+    multiplier[0] -= isPositive[0] ? 0 : 1
 
-// const primaryToSecondary = [
-//     secondaryRGB["r"] / primaryRGB["r"],
-//     secondaryRGB["g"] / primaryRGB["g"],
-//     secondaryRGB["b"] / primaryRGB["b"],
-// ]
-// console.log(primaryToSecondary);
+    rgb["r"] = Math.round(r + (multiplier[0] * difference[0]))
+    rgb["g"] = Math.round(g + (multiplier[1] * difference[1]))
+    rgb["b"] = Math.round(b + (multiplier[2] * difference[2]))
 
-// const primaryToAccent = [
-//     accentRGB["r"] / primaryRGB["r"],
-//     accentRGB["g"] / primaryRGB["g"],
-//     accentRGB["b"] / primaryRGB["b"],
-// ]
-// console.log(primaryToAccent);
+    return rgbToHex(rgb)
+}
 
-const primaryToSecondary = [0.3255, 0.3031, 0.2923];
-const primaryToAccent = [1.5659, 1.48437, 1.5615];
+const primaryToSecondary = [-0.7, -0.7, -0.7];
+const primaryToAccent = [0.5, 0.5, 0.5];
 
 function saveColourScheme() {
     let settings = localStorage.getItem("settings");
@@ -88,8 +87,8 @@ function changeColourScheme() {
 
     } else {
         const primary = colour;
-        const secondary = multiplyHex(primary, primaryToSecondary);
-        const accent = multiplyHex(primary, primaryToAccent);
+        const secondary = brightenHex(primary, primaryToSecondary);
+        const accent = brightenHex(primary, primaryToAccent);
 
         console.log(primary, secondary, accent);
 
