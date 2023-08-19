@@ -78,14 +78,24 @@ function saveColourScheme() {
 
 function changeColourScheme() {
     let settings = localStorage.getItem("settings");
+    let theme = settings.split(",")[0];
     let colour = settings.split(",")[1];
 
     if (colour === "default") {
-        document.documentElement.style.setProperty("--primary", "#23CE6B");
-        document.documentElement.style.setProperty("--secondary", "#062d24");
-        document.documentElement.style.setProperty("--accent", "#85ff66");
-
+        if (theme === "1") {
+            document.documentElement.style.setProperty("--primary", "#23CE6B");
+            document.documentElement.style.setProperty("--secondary", "#062d24");
+            document.documentElement.style.setProperty("--accent", "#85ff66");
+        } else {
+            document.documentElement.style.setProperty("--primary", "#23CE6B");
+            document.documentElement.style.setProperty("--secondary", "#a5f0c4");
+            document.documentElement.style.setProperty("--accent", "#72db58");
+        }
     } else {
+        if (!colour.startsWith("#")) {
+            colour = `#${colour}`
+        }
+
         const primary = colour;
         const secondary = brightenHex(primary, primaryToSecondary);
         const accent = brightenHex(primary, primaryToAccent);
@@ -99,12 +109,18 @@ function changeColourScheme() {
 }
 
 function resetColours() {
-    document.documentElement.style.setProperty("--primary", "#23CE6B");
-    document.documentElement.style.setProperty("--secondary", "#062d24");
-    document.documentElement.style.setProperty("--accent", "#85ff66");
-
     let settings = localStorage.getItem("settings");
     let theme = settings.split(",")[0];
+
+    if (theme === "1") {
+        document.documentElement.style.setProperty("--primary", "#23CE6B");
+        document.documentElement.style.setProperty("--secondary", "#062d24");
+        document.documentElement.style.setProperty("--accent", "#85ff66");
+    } else {
+        document.documentElement.style.setProperty("--primary", "#23CE6B");
+        document.documentElement.style.setProperty("--secondary", "#a5f0c4");
+        document.documentElement.style.setProperty("--accent", "#72db58");
+    }
 
     localStorage.setItem('settings', `${theme},default`);
 }

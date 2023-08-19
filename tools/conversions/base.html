@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/imgs/icon.png" type="image/x-icon">
+    <title>UTILS - BASE CONVERSIONS</title>
+    <link rel="stylesheet" href="../../style.css">
+
+    <script src="../../navbar.js"></script>
+    <script src="../save.js"></script>
+    <script src="conversions.js"></script>
+    <script src="/settings/colour scheme.js" defer></script>
+
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+
+<body onload="populateConversionSite('BASE'); populateNavbar(); displaySave('BASE')">
+
+    <div id="sidenav"></div>
+
+    <div class="main">
+        <div id="top">
+            <h1 id="heading"></h1>
+            <button id="save" onclick="save('BASE')"></button>
+        </div>
+
+        <button onclick="swapUnits()" id="swap"><span class="material-symbols-outlined">swap_horiz</span></button>
+
+        <table>
+            <tr>
+                <td>BASE</td>
+                <td>NUMBER</td>
+            </tr>
+            <tr>
+                <td id="base-select-a">
+                    <input id="units-a" type="number" placeholder="0" value="10" min="2" max="36">
+                </td>
+                <td><input id="input-a" placeholder="0"></td>
+
+            </tr>
+            <tr>
+                <td id="base-select-b">
+                    <input id="units-b" type="number" placeholder="0" value="2" min="2" max="36">
+                </td>
+                <td><input id="input-b" placeholder="0"></td>
+            </tr>
+        </table>
+
+        <p><span class="material-symbols-outlined" style="font-size: 20px;">info</span> This only works for bases between 2 and 36</p>
+
+        <script>
+            function round(number) {
+                const places = localStorage.getItem("rounding");
+
+                const multiplier = 10 ** places;
+                const rounded = Math.round((number + Number.EPSILON) * multiplier) / multiplier;
+
+                return rounded
+            }
+
+            function convertBase(inputNumber, inputBase, outputBase) {
+                if (inputNumber === "") {
+                    return 0
+                } else {
+                    const decimalNumber = parseInt(inputNumber, inputBase);
+                    let outputNumber = decimalNumber.toString(outputBase);
+
+                    return outputNumber.toUpperCase()
+                }
+            }
+
+            function convertOnPage(edit) {
+                const inputA = document.getElementById("input-a").value;
+                const inputB = document.getElementById("input-b").value;
+
+                const unitsA = document.getElementById("units-a").value;
+                const unitsB = document.getElementById("units-b").value;
+
+                if (edit === "a") {
+                    let converted = convertBase(inputA, unitsA, unitsB);
+
+                    document.getElementById("input-b").value = converted
+                } else if (edit === "b") {
+                    let converted = convertBase(inputB, unitsB, unitsA);
+
+                    document.getElementById("input-a").value = converted
+                }
+
+                console.log(inputA, inputB);
+            }
+
+            function swapUnits() {
+                const unitsA = document.getElementById("units-a").value;
+                const unitsB = document.getElementById("units-b").value;
+
+                document.getElementById("units-a").value = unitsB
+                document.getElementById("units-b").value = unitsA
+
+                convertOnPage("a");
+            }
+
+            // UPDATE VALUES
+            document.getElementById("input-a")
+                .addEventListener("input", (event) => convertOnPage("a"));
+            document.getElementById("input-b")
+                .addEventListener("input", (event) => convertOnPage("b"));
+            document.getElementById("units-a")
+                .addEventListener("input", (event) => convertOnPage("b"));
+            document.getElementById("units-b")
+                .addEventListener("input", (event) => convertOnPage("a"));
+        </script>
+    </div>
+
+</body>
+
+</html>

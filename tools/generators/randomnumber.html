@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/imgs/icon.png" type="image/x-icon">
+    <title>UTILS - RANDOM NUMBER GENERATOR</title>
+    <link rel="stylesheet" href="../../style.css">
+
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+    <script src="../../navbar.js"></script>
+    <script src="../save.js"></script>
+    <script src="/settings/colour scheme.js" defer></script>
+
+</head>
+
+<body onload="populateNavbar(); displaySave('RANDOM NUMBER')">
+
+    <div id="sidenav"></div>
+
+    <div class="main">
+
+        <div id="top">
+            <h1 id="heading"><span id="utils-header">RANDOM NUMBER</span> GENERATORS</h1>
+            <button id="save" onclick="save('RANDOM NUMBER')"></button>
+        </div>
+
+        <label>
+            <span>MIN</span>
+            <input type="number" id="input1"></input>
+        </label>
+
+        <br>
+
+        <label>
+            <span>MAX</span>
+            <input type="number" id="input2"></input>
+        </label>
+
+        <br><br>
+
+        <button id="random" class="cursorHover">GENERATE</button>
+
+            <br><br>
+
+            <p id="output"></p>
+
+    </div>
+
+    <script>
+
+        var button = document.getElementById('random')
+        var output = document.getElementById('output')
+
+        button.addEventListener('click', function (e) {
+
+            var value1 = document.getElementById('input1').value
+            var value2 = document.getElementById('input2').value
+
+            var min = value1 ? parseInt(value1) : ''
+            var max = value2 ? parseInt(value2) : ''
+
+            document.getElementById('input1').value = min.toString()
+            document.getElementById('input2').value = max.toString()
+
+            if (min === '' || max === '') {
+                output.innerText = "Please fill in both boxes"
+            } else if (min > max) {
+                output.innerText = "Min can't be bigger than max"
+            } else if (min === max) {
+                output.innerText = "Values must be different"
+            } else if (isNaN(min) || isNaN(max)) {
+                output.innerText = "Values must be numbers"
+            } else {
+               min--;
+                var random = Math.floor(Math.random() * (max - min)) + min + 1;
+                output.innerText = random
+            }
+        })
+
+    </script>
+
+</body>
+
+</html>

@@ -1,3 +1,10 @@
+function needsDotHTML() {
+    const onSite = window.location.origin.startsWith('https://utils.is-a.dev')
+    const on127 = window.location.origin.startsWith('http://127.0.0.1')
+
+    return !(onSite || on127)
+}
+
 function getJSON() {
     console.log(fetch('../tools.json').then((response) => response.json()))
     return fetch('../tools.json')
@@ -43,7 +50,9 @@ function generateList(filter) {
 
                     console.log(tool, link, cat);
 
-                    content = content.concat(`<li><a href="../tools/${cat.toLowerCase()}/${link}">${tool} - ${cat}</a></li>`)
+                    const ending = needsDotHTML() ? ".html" : "";
+
+                    content = content.concat(`<li><a href="../tools/${cat.toLowerCase()}/${link}${ending}">${tool} - ${cat}</a></li>`)
                 }
 
                 console.log(content);

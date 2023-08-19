@@ -1,21 +1,29 @@
+function needsDotHTML() {
+    const onSite = window.location.origin.startsWith('https://utils.is-a.dev')
+    const on127 = window.location.origin.startsWith('http://127.0.0.1')
+
+    return !(onSite || on127)
+}
+
 function populateNavbar() {
     var links;
+
     console.log(window.location.origin)
-    if (window.location.origin.startsWith('https://utils.is-a.dev')) {
-        links = {
-            "Home": "/",
-            "About": "/about",
-            "Tools": "/tools",
-            "Saved": "/saved",
-            "Settings": "/settings",
-        }
-    } else {
+    if (needsDotHTML()) {
         links = {
             "Home": "/index.html",
             "About": "/about/index.html",
             "Tools": "/tools/index.html",
             "Saved": "/saved/index.html",
             "Settings": "/settings/index.html",
+        }
+    } else {
+        links = {
+            "Home": "/",
+            "About": "/about",
+            "Tools": "/tools",
+            "Saved": "/saved",
+            "Settings": "/settings",
         }
     }
 
@@ -59,7 +67,7 @@ function populateNavbar() {
     icon2.id = "feedback-button-img"
     icon2.className = "navbar-b-button-img"
 
-    switcher.addEventListener('click', function(e) {
+    switcher.addEventListener('click', function (e) {
         switchMode(icon);
     })
 
@@ -82,7 +90,7 @@ function populateNavbar() {
 function switchMode(pic) {
     var settings = localStorage.getItem('settings')
     if (settings == undefined || settings == NaN || settings == null) {
-        localStorage.setItem('settings', '1,#23CE6B') // 1 = dark mode, 0 = light mode
+        localStorage.setItem('settings', '1,default') // 1 = dark mode, 0 = light mode
         settings = localStorage.getItem('settings')
     }
     var mode = settings.split(',')[0]
@@ -95,6 +103,18 @@ function switchMode(pic) {
     feedbackIcon.src = mode == "1" ? '/imgs/feedback-light.svg' : '/imgs/feedback-dark.svg'
 
     document.getElementById('theme-style').setAttribute('href', mode == "1" ? '/themes/light.css' : '/themes/dark.css')
+
+    if (colour === "default") {
+        if (mode === "0") {
+            document.documentElement.style.setProperty("--primary", "#23CE6B");
+            document.documentElement.style.setProperty("--secondary", "#062d24");
+            document.documentElement.style.setProperty("--accent", "#85ff66");
+        } else {
+            document.documentElement.style.setProperty("--primary", "#23CE6B");
+            document.documentElement.style.setProperty("--secondary", "#a5f0c4");
+            document.documentElement.style.setProperty("--accent", "#72db58");
+        }
+    }
 }
 
 function getIcon(pic) {

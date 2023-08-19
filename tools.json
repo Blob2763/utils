@@ -1,14 +1,16 @@
 [
-    {
+   {
       "CONVERSIONS": {
-         "TEMPERATURE": "temperature.html",
-         "LENGTH": "distance.html",
-         "TIME": "time.html",
-         "AREA": "area.html"
+         "TEMPERATURE": "temperature",
+         "LENGTH": "distance",
+         "TIME": "time",
+         "AREA": "area",
+         "STORAGE": "storage",
+         "BASE": "base"
       },
       "GENERATORS": {
-         "RANDOM NUMBER": "random number.html",
-         "DISCORD TIMESTAMP": "discord timestamp.html"
+         "RANDOM NUMBER": "randomnumber",
+         "DISCORD TIMESTAMP": "discordtimestamp"
       }
-    }
- ]
+   }
+]
