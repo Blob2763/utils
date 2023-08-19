@@ -39,7 +39,9 @@ function populateList(tools) {
         for (tool in tools[category]) {
             console.log("category", category)
 
-            content = content.concat('<li><a href="../tools/', category.toLowerCase(), '/', tools[category][tool], '">', tool, '</a></li>\n')
+            const ending = needsDotHTML() ? ".html" : "";
+
+            content = content.concat(`<li><a href="../tools/${category.toLowerCase()}/${tools[category][tool]}${ending}">${tool}</a></li>\n`)
         }
 
         content = content.concat("</ul>")

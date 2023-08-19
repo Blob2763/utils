@@ -1,3 +1,10 @@
+function needsDotHTML() {
+    const onSite = window.location.origin.startsWith('https://utils.is-a.dev')
+    const on127 = window.location.origin.startsWith('http://127.0.0.1')
+
+    return !(onSite || on127)
+}
+
 function getJSON() {
     console.log(fetch('/tools.json').then((response) => response.json()))
     return fetch('/tools.json')
@@ -10,12 +17,7 @@ function getSaveData() {
 
 function checkSave(tool) {
     const allData = getSaveData();
-
-    console.log("data", allData);
-
     const isSaved = (allData[tool] === "true");
-
-    console.log(isSaved);
 
     if (isSaved) {
         console.log(`${tool} is saved`)
@@ -58,7 +60,7 @@ function getAllSaved() {
             }
         }
     }
-    console.log(saved);
+    console.log("SAVED", saved);
 
     return saved
 }
@@ -77,11 +79,7 @@ async function category(tool) {
 
     try {
         const toolsJSON = await getJSON();
-
-        console.log("TOOLSJSON", toolsJSON);
-
         const firstToolJSON = toolsJSON[0];
-        console.log("FIRST TOOLSJSON", firstToolJSON);
 
         for (const cat in firstToolJSON) {
             if (tool in firstToolJSON[cat]) {
@@ -90,7 +88,6 @@ async function category(tool) {
             }
         }
 
-        content = content.concat("/");
         console.log("CONTENT", content);
 
         return content;
@@ -106,22 +103,34 @@ async function category(tool) {
 
 async function displayAllSaved(home) {
     let content = "";
-    const allSaved = getAllSaved();
+    const allSaved = await getAllSaved();
+    let toolsJSON = await getJSON();
+    toolsJSON = toolsJSON[0]
+
+    console.log("TOOLS", toolsJSON)
 
     for (tool of allSaved) {
         const name = tool.toUpperCase();
 
         let cat = await category(tool);
-        cat = cat.toLowerCase()
 
         console.log("NAME", name)
         console.log("CATEGORY", cat)
         console.log("TOOL", tool)
 
+        const link = toolsJSON[cat][name];
+        
+        cat = cat.toLowerCase()
+        cat = cat.concat("/")
+
+        console.log("LINK", link)
+
+        const ending = needsDotHTML() ? ".html" : "";
+
         if (tool === "LENGTH") {
-            content = content.concat(`<li><a href="${linkStart(home)}conversions/distance.html">LENGTH</a></li>`)
+            content = content.concat(`<li><a href="${linkStart(home)}conversions/distance${ending}">LENGTH</a></li>`)
         } else {
-            content = content.concat(`<li><a href="${linkStart(home)}${cat}${tool.toLowerCase()}.html">${name}</a></li>`)
+            content = content.concat(`<li><a href="${linkStart(home)}${cat}${link}${ending}">${name}</a></li>`)
         }
     }
 

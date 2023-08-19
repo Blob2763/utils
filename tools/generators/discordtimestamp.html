@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/imgs/icon.png" type="image/x-icon">
+    <title>UTILS - TIMESTAMP GENERATORS</title>
+    <link rel="stylesheet" href="../../style.css">
+
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+    <script src="../../navbar.js"></script>
+    <script src="../save.js"></script>
+    <script src="/settings/colour scheme.js" defer></script>
+
+</head>
+
+<body onload="populateNavbar(); displaySave('DISCORD TIMESTAMP')">
+
+    <div id="sidenav"></div>
+
+    <div class="main">
+
+        <div id="top">
+            <h1 id="heading"><span id="utils-header">DISCORD TIMESTAMP</span> GENERATORS</h1>
+            <button id="save" onclick="save('DISCORD TIMESTAMP')"></button>
+        </div>
+
+        <label>
+            <span>DAY</span>
+            <input type="number" value="1" min="1" max="31" id="d-input"></input>
+        </label>
+
+        <label>
+            <span>MONTH</span>
+            <input type="number" value="1" min="1" max="12" id="m-input"></input>
+        </label>
+
+        <label>
+            <span>YEAR</span>
+            <input type="number" value="1970" min="0" max="99999" id="y-input"></input>
+        </label>
+
+        <br>
+
+        <label>
+            <span>HOUR</span>
+            <input type="number" value="0" min="0" max="23" id="h-input"></input>
+        </label>
+
+        <label>
+            <span>MINUTE</span>
+            <input type="number" value="0" min="0" max="59" id="mi-input"></input>
+        </label>
+
+        <label>
+            <span>SECOND</span>
+            <input type="number" value="0" min="0" max="59" id="s-input"></input>
+        </label>
+
+        <br>
+
+        <label>
+            <span>TYPE</span>
+            <select id="type">
+                <option id="short-time">SHORT TIME</option>
+                <option id="long-time">LONG TIME</option>
+                <option id="short-date">SHORT DATE</option>
+                <option id="long-date">LONG DATE</option>
+                <option id="date-time">DATE AND TIME</option>
+                <option id="date-day-time">DATE, DAY OF THE WEEK, AND TIME</option>
+                <option id="relative">RELATIVE</option>
+            </select>
+        </label>
+
+        <br><br>
+
+        <button onclick="copyTimestamp()" id="timestamp"></button>
+        <span id="copy-confirm"></span>
+
+        <br><br>
+
+        <span id="preview"></span>
+
+    </div>
+
+    <script>
+        function convertToUnixTime(day, time) {
+            const dateTimeString = `${day} ${time}`;
+            const dateObj = new Date(dateTimeString);
+            const unixTime = dateObj.getTime();
+            const unixTimeInSeconds = Math.floor(unixTime / 1000);
+
+            return unixTimeInSeconds;
+        }
+
+        function convertUnixToDate(unix) {
+            const unixTimeInMilliseconds = unix * 1000;
+            const dateObj = new Date(unixTimeInMilliseconds);
+
+            const year = dateObj.getFullYear();
+            const month = String(dateObj.getMonth() + 1).padStart(2, '0');
+            const day = String(dateObj.getDate()).padStart(2, '0');
+            const hours = String(dateObj.getHours()).padStart(2, '0');
+            const minutes = String(dateObj.getMinutes()).padStart(2, '0');
+            const seconds = String(dateObj.getSeconds()).padStart(2, '0');
+
+            const formattedDateTime = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+
+            return formattedDateTime;
+        }
+
+        function getWeekday(date) {
+            const dateObj = new Date(date);
+            const dayOfWeek = dateObj.getDay();
+            const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+            return weekdays[dayOfWeek];
+        }
+
+        function getInputsAsDateTime() {
+            let inputs = [];
+
+            inputs.push(document.getElementById("d-input").value);
+            inputs.push(document.getElementById("m-input").value);
+            inputs.push(document.getElementById("y-input").value);
+            inputs.push(document.getElementById("h-input").value);
+            inputs.push(document.getElementById("mi-input").value);
+            inputs.push(document.getElementById("s-input").value);
+
+            const date = `${inputs[2]}-${inputs[1]}-${inputs[0]}`;
+            const time = `${inputs[3]}:${inputs[4]}:${inputs[5]}`;
+
+            return [date, time]
+        }
+
+        function generateTimeStamp() {
+            const dateTime = getInputsAsDateTime();
+            const unix = convertToUnixTime(dateTime[0], dateTime[1]);
+
+            const codes = {
+                "SHORT TIME": "t",
+                "LONG TIME": "T",
+                "SHORT DATE": "d",
+                "LONG DATE": "D",
+                "DATE AND TIME": "f",
+                "DATE, DAY OF THE WEEK, AND TIME": "F",
+                "RELATIVE": "R",
+            };
+
+            const type = document.getElementById("type").value;
+
+            const timestamp = `<t:${unix}:${codes[type]}>`;
+
+            return timestamp
+        }
+
+        function findShortTime(longTime) {
+            let splitTime = longTime.split(":");
+            splitTime.splice(2, 1)
+
+            return splitTime.join(":")
+        }
+
+        function preview(timestamp) {
+            let parts = timestamp.split(":");
+            parts.splice(0, 1);
+            parts[1] = parts[1][0]
+
+            const unix = parts[0];
+            const dateTime = convertUnixToDate(unix);
+            const type = parts[1];
+
+            const weekday = getWeekday(dateTime);
+            const fullDate = dateTime.split(" ")[0].replaceAll("-", "/");
+            const longTime = dateTime.split(" ")[1];
+            const shortTime = findShortTime(longTime);
+
+            const months = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+            const splitDate = fullDate.split("/");
+            const year = Number(splitDate[0]);
+            const month = months[Number(splitDate[1])];
+            const date = Number(splitDate[2]);
+
+            let preview = "";
+            if (type === "t") {
+                preview = shortTime
+            }
+
+            if (type === "T") {
+                preview = longTime
+            }
+
+            if (type === "d") {
+                preview = fullDate
+            }
+
+            if (type === "D") {
+                preview = `${date} ${month} ${year}`
+            }
+
+            if (type === "f") {
+                preview = `${date} ${month} ${year} ${shortTime}`
+            }
+
+            if (type === "F") {
+                preview = `${weekday}, ${date} ${month} ${year} ${shortTime}`// Saturday, 5 August 2023 21:34
+            }
+
+            if (type === "R") {
+                const now = Date.now() / 1000;
+                const diff = Number(unix) - now;
+
+                const isPositive = (diff > 0);
+                const isZero = (diff === 0);
+
+                if (isZero) {
+                    preview = "now"
+                }
+
+                let units = "";
+                const absDiff = Math.floor(Math.abs(diff));
+
+                let amount = absDiff
+                units = amount === 1 ? "second" : "seconds"
+
+                if (amount > 60) {
+                    amount = Math.floor(amount / 60) // minutes
+                    units = amount === 1 ? "minute" : "minutes"
+
+                    if (amount > 60) {
+                        amount = Math.floor(amount / 60) // hours
+                        units = amount === 1 ? "hour" : "hours"
+
+                        if (amount > 24) {
+                            amount = Math.floor(amount / 24) // days
+                            units = amount === 1 ? "day" : "days"
+                            const days = amount
+
+                            if (amount > 31) {
+                                amount = Math.floor(days / 31) // months
+                                units = amount === 1 ? "month" : "months"
+
+                                if (amount > 12) {
+                                    amount = Math.floor(days / 365) // years
+                                    units = amount === 1 ? "year" : "years"
+                                }
+                            }
+                        }
+                    }
+                }
+
+                if (!isZero) {
+                    preview = isPositive ? `in ${amount} ${units}` : `${amount} ${units} ago`
+                }
+            }
+
+            return preview
+        }
+
+        function viewOnScreen() {
+            const timestamp = generateTimeStamp();
+            const previewStr = preview(timestamp);
+
+            document.getElementById("timestamp").innerText = timestamp
+            document.getElementById("preview").innerText = previewStr
+
+            document.getElementById("copy-confirm").innerText = ""
+        }
+
+        document.getElementById("d-input")
+            .addEventListener("input", (event) => viewOnScreen());
+        document.getElementById("m-input")
+            .addEventListener("input", (event) => viewOnScreen());
+        document.getElementById("y-input")
+            .addEventListener("input", (event) => viewOnScreen());
+        document.getElementById("h-input")
+            .addEventListener("input", (event) => viewOnScreen());
+        document.getElementById("mi-input")
+            .addEventListener("input", (event) => viewOnScreen());
+        document.getElementById("s-input")
+            .addEventListener("input", (event) => viewOnScreen());
+        document.getElementById("type")
+            .addEventListener("input", (event) => viewOnScreen());
+
+        function setDefaultValues() {
+            const now = new Date();
+
+            const year = now.getFullYear();
+            const month = now.getMonth() + 1;
+            const date = now.getDate();
+            const hours = now.getHours();
+            const minutes = now.getMinutes();
+            const seconds = now.getSeconds();
+
+            document.getElementById("d-input").value = date
+            document.getElementById("m-input").value = month
+            document.getElementById("y-input").value = year
+            document.getElementById("h-input").value = hours
+            document.getElementById("mi-input").value = minutes
+            document.getElementById("s-input").value = seconds
+        }
+
+        function copyTimestamp() {
+            let copyText = document.getElementById("timestamp");
+
+            navigator.clipboard.writeText(copyText.innerText);
+
+            document.getElementById("copy-confirm").innerText = "COPIED!"
+        }
+
+        setDefaultValues();
+        viewOnScreen();
+    </script>
+
+</body>
+
+</html>

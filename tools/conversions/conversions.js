@@ -51,6 +51,24 @@ const data = {
             {"value": "acre", "label": "ac",},
         ]
     },
+    "STORAGE": {
+        "heading": "STORAGE",
+        "category": "CONVERSIONS",
+        "dropdown": [
+            {"value": "bit", "label": "b",},
+            {"value": "byte", "label": "B",},
+            {"value": "kilobyte", "label": "KB",},
+            {"value": "megabyte", "label": "MB",},
+            {"value": "gigabyte", "label": "GB",},
+            {"value": "terabyte", "label": "TB",},
+            {"value": "petabyte", "label": "PB",},
+        ]
+    },
+    "BASE": {
+        "heading": "BASE",
+        "category": "CONVERSIONS",
+        "dropdown": "no dropdown"
+    },
 };
 
 function dropdown(type, tool) {
@@ -64,7 +82,6 @@ function dropdown(type, tool) {
         cutOff = 1
     }
 
-    const options = toolData["dropdown"];
     for (option in options) {
         const optionData = options[option];
 
@@ -86,6 +103,10 @@ function populateConversionSite(tool) {
     let heading = `<span id="utils-header">${toolData["heading"]}</span> ${toolData["category"]}`;
 
     document.getElementById("heading").innerHTML = heading
-    document.getElementById("units-a").innerHTML = dropdown("a", tool)
-    document.getElementById("units-b").innerHTML = dropdown("b", tool)
+
+    const options = toolData["dropdown"];
+    if (options !== "no dropdown") {
+        document.getElementById("units-a").innerHTML = dropdown("a", tool)
+        document.getElementById("units-b").innerHTML = dropdown("b", tool)
+    }
 }
