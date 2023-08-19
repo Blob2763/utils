@@ -73,6 +73,7 @@ const data = {
 
 function dropdown(type, tool) {
     const toolData = data[tool];
+    const options = toolData["dropdown"];
 
     let dropdown = "";
     let cutOff = 0;
@@ -104,8 +105,8 @@ function populateConversionSite(tool) {
 
     document.getElementById("heading").innerHTML = heading
 
-    const options = toolData["dropdown"];
-    if (options !== "no dropdown") {
+    const dropdownOptions = toolData["dropdown"];
+    if (dropdownOptions !== "no dropdown") {
         document.getElementById("units-a").innerHTML = dropdown("a", tool)
         document.getElementById("units-b").innerHTML = dropdown("b", tool)
     }
